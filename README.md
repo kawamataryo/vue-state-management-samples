@@ -204,15 +204,15 @@ const createStore = () => {
   };
 };
 
-type Store = ReturnType<typeof createStore>;
+type Store = ReturnType<DeepReadonly<typeof createStore>>;
 
-export const STORE_KEY: InjectionKey<DeepReadonly<Store>> = Symbol("Store");
+const STORE_KEY: InjectionKey<Store> = Symbol("Store");
 
 export const initializeStore = () => {
   provide(STORE_KEY, createStore());
 };
 
 export const useStore = () => {
-  return inject(STORE_KEY);
+  return inject(STORE_KEY) as Store;
 };
 ```
