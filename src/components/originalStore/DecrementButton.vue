@@ -9,8 +9,8 @@ import { useStore } from "@/stores/originalStore/store";
 export default defineComponent({
   name: "DecrementButton",
   setup() {
-    const store = useStore();
-    const decrement = () => store?.mutations.decrement();
+    const { mutations } = useStore();
+    const decrement = () => mutations.decrement();
 
     return {
       decrement

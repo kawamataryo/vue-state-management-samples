@@ -11,8 +11,8 @@ import { useStore } from "@/stores/originalStore/store";
 export default defineComponent({
   name: "Counter",
   setup() {
-    const store = useStore();
-    const count = computed(() => store?.state.count);
+    const { state } = useStore();
+    const count = computed(() => state.count);
 
     return {
       count
