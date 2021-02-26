@@ -143,21 +143,6 @@ export const COUNT_QUERY = gql`
 `;
 ```
 
-[src/stores/apolloClient/typeDefs.ts](https://github.com/kawamataryo/vue-state-management-samples/blob/main/src/stores/apolloClient/typeDefs.ts)
-
-```ts
-import gql from "graphql-tag";
-
-export const typeDefs = gql`
-  extend type Store {
-    count: Int!
-  }
-  extend type Mutation {
-    increment: Int
-    decrement: Int
-  }
-`;
-```
 ---
 
 ## Original Store
