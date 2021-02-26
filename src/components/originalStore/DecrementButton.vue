@@ -1,0 +1,20 @@
+<template>
+  <button class="button is-danger" @click="decrement">-</button>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useStore } from "@/stores/originalStore/store";
+
+export default defineComponent({
+  name: "DecrementButton",
+  setup() {
+    const store = useStore();
+    const decrement = () => store?.mutations.decrement();
+
+    return {
+      decrement
+    };
+  }
+});
+</script>

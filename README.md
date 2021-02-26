@@ -8,4 +8,4 @@ Vue.js state management samples.
 - [x] Add vuex sample
 - [x] Add pinia sample
 - [ ] Add original state management sample
-- [ ] Add apollo client sample
+- [x] Add apollo client sample

@@ -7,12 +7,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, provide } from "vue";
 import Navbar from "@/components/common/Navber.vue";
+import { DefaultApolloClient } from "@vue/apollo-composable";
+import { apolloClient } from "@/stores/apolloClient/apolloClient";
+import { initializeStore } from "@/stores/originalStore/store";
+
 export default defineComponent({
   name: "App",
   components: {
     Navbar
+  },
+  setup() {
+    // ApolloClient
+    provide(DefaultApolloClient, apolloClient);
+
+    // Original store
+    initializeStore();
   }
 });
 </script>
