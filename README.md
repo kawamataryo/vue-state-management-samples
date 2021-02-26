@@ -1,11 +1,11 @@
 # vue-state-management-samples
 Vue.js state management samples.
 
-![](https://i.gyazo.com/8f742c202668766d38eefb6423187756.png)
+![](https://i.gyazo.com/13e3d5da6b913334fec54a131bbf0705.png)
 
 # TODO
 - [x] Add Paging
 - [x] Add vuex sample
 - [x] Add pinia sample
-- [ ] Add original state management sample
+- [x] Add original state management sample
 - [x] Add apollo client sample

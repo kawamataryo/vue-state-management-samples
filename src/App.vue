@@ -1,6 +1,6 @@
 <template>
-  <Navbar />
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <img alt="Vue logo" src="./assets/logo.png" style="max-width: 130px" class="mt-5"/>
+  <NavButtons />
   <div class="container">
     <router-view />
   </div>
@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, provide } from "vue";
-import Navbar from "@/components/common/Navber.vue";
+import NavButtons from "@/components/common/NavButtons.vue";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import { apolloClient } from "@/stores/apolloClient/apolloClient";
 import { initializeStore } from "@/stores/originalStore/store";
@@ -16,7 +16,7 @@ import { initializeStore } from "@/stores/originalStore/store";
 export default defineComponent({
   name: "App",
   components: {
-    Navbar
+    NavButtons
   },
   setup() {
     // ApolloClient

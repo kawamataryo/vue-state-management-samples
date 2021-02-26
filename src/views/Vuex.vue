@@ -2,7 +2,7 @@
   <div>
     <h1 class="title is-4 mt-5">
       State management with
-      <a href="https://github.com/vuejs/vuex" target="_blank">Vuex4</a>
+      <a href="https://github.com/vuejs/vuex" target="_blank">Vuex4 🔋</a>
     </h1>
     <CardLayout>
       <Counter />

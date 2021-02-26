@@ -2,7 +2,7 @@
   <div>
     <h1 class="title is-4 mt-5">
       State management with
-      <a href="https://github.com/posva/pinia" target="_blank">Pinia</a>
+      <a href="https://github.com/posva/pinia" target="_blank">Pinia 🍍</a>
     </h1>
     <CardLayout>
       <Counter />
