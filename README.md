@@ -5,7 +5,7 @@ Vue.js state management samples.
 
 ![](https://i.gyazo.com/0b3acd2b4e1011fa7fb08ead6d6ce0f1.png)
 
-## Vuex4
+## [Vuex4](https://github.com/vuejs/vuex)
 ### Store
 [src/stores/vuex/store.ts](https://github.com/kawamataryo/vue-state-management-samples/blob/main/src/stores/vuex/store.ts)
 ```ts
@@ -43,7 +43,7 @@ export const store = createStore<State>({
 
 ---
 
-## Pinia
+## [Pinia](https://github.com/posva/pinia)
 ### Store
 [src/stores/pinia/store.ts ](https://github.com/kawamataryo/vue-state-management-samples/blob/main/src/stores/pinia/store.ts)
 
@@ -68,7 +68,7 @@ export const useCounterStore = defineStore({
 
 ---
 
-## Apollo Client
+## [Apollo Client](https://apollo.vuejs.org/guide/local-state.html)
 ### Store
 [src/stores/apolloClient/apolloClient.ts ](https://github.com/kawamataryo/vue-state-management-samples/blob/main/src/stores/apolloClient/apolloClient.ts)
 ```ts
