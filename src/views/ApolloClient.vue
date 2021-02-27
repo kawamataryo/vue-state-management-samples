@@ -24,10 +24,7 @@
       path="src/stores/apolloClient/resolvers.ts"
       :code="resolverCode"
     />
-    <CodeBlock
-      path="src/stores/apolloClient/queries.ts"
-      :code="queriesCode"
-    />
+    <CodeBlock path="src/stores/apolloClient/queries.ts" :code="queriesCode" />
     <CodeBlock
       path="src/stores/apolloClient/mutations.ts"
       :code="mutationsCode"
@@ -155,7 +152,7 @@ export default defineComponent({
       resolverCode: APOLLO_RESOLVERS_CODE,
       typeDefsCode: APOLLO_TYPE_DEFS_CODE,
       mutationsCode: APOLLO_MUTATIONS_CODE,
-      queriesCode: APOLLO_QUERIES_CODE,
+      queriesCode: APOLLO_QUERIES_CODE
     };
   }
 });
