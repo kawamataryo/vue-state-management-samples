@@ -1,1 +1,1 @@
-declare module 'vue-code-highlight';
+declare module "vue-code-highlight";

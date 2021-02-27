@@ -12,7 +12,7 @@
       </div>
     </CardLayout>
     <h2 class="is-size-4 mt-5">Store</h2>
-    <CodeBlock path="src/stores/plina/store.ts" :code="code"/>
+    <CodeBlock path="src/stores/plina/store.ts" :code="code" />
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export const useCounterStore = defineStore({
     }
   }
 });
-`
+`;
 
 export default defineComponent({
   name: "Pinia",
@@ -50,7 +50,7 @@ export default defineComponent({
     DecrementButton,
     IncrementButton,
     CardLayout,
-    Counter,
+    Counter
   },
   setup() {
     return {

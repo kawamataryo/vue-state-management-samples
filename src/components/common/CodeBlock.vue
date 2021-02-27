@@ -33,7 +33,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
   .my-code-block {
     margin: 0 20px;
     pre {
@@ -41,5 +41,4 @@ export default defineComponent({
     }
   }
 }
-
 </style>

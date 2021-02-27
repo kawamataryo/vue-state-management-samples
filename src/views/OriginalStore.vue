@@ -58,7 +58,7 @@ export const initializeStore = () => {
 export const useStore = () => {
   return inject(STORE_KEY) as Store;
 };
-`
+`;
 
 export default defineComponent({
   name: "Pinia",
@@ -72,7 +72,7 @@ export default defineComponent({
   setup() {
     return {
       code: STORE_CODE_BLOCK
-    }
+    };
   }
 });
 </script>

@@ -25,12 +25,12 @@
       :code="resolverCode"
     />
     <CodeBlock
-      path="src/stores/apolloClient/apolloClient.ts"
-      :code="clientCode"
+      path="src/stores/apolloClient/queries.ts"
+      :code="queriesCode"
     />
     <CodeBlock
-      path="src/stores/apolloClient/apolloClient.ts"
-      :code="clientCode"
+      path="src/stores/apolloClient/mutations.ts"
+      :code="mutationsCode"
     />
   </div>
 </template>
@@ -112,6 +112,34 @@ export const typeDefs = gql\`
 \`;
 `;
 
+const APOLLO_QUERIES_CODE = `
+import gql from "graphql-tag";
+
+export const COUNT_QUERY = gql\`
+  query CountQuery {
+    store @client {
+      count
+    }
+  }
+\`;
+`;
+
+const APOLLO_MUTATIONS_CODE = `
+import gql from "graphql-tag";
+
+export const INCREMENT_MUTATION = gql\`
+  mutation incrementMutation {
+    increment @client
+  }
+\`;
+
+export const DECREMENT_MUTATION = gql\`
+  mutation decrementMutation {
+    decrement @client
+  }
+\`;
+`;
+
 export default defineComponent({
   name: "Pinia",
   components: {
@@ -125,7 +153,9 @@ export default defineComponent({
     return {
       clientCode: APOLLO_CLIENT_CODE,
       resolverCode: APOLLO_RESOLVERS_CODE,
-      typeDefsCode: APOLLO_TYPE_DEFS_CODE
+      typeDefsCode: APOLLO_TYPE_DEFS_CODE,
+      mutationsCode: APOLLO_MUTATIONS_CODE,
+      queriesCode: APOLLO_QUERIES_CODE,
     };
   }
 });
