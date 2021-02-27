@@ -1,7 +1,7 @@
 <template>
   <div class="is-flex is-justify-content-center">
-    <div class="card mt-5" style="min-width: 480px">
-      <div class="card-content">
+    <div class="bu-card mt-5" style="min-width: 300px">
+      <div class="bu-card-content">
         <slot />
       </div>
     </div>

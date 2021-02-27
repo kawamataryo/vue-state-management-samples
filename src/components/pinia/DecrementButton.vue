@@ -1,5 +1,5 @@
 <template>
-  <button class="button is-danger" @click="decrement">-</button>
+  <button class="bu-button is-danger" @click="decrement">-</button>
 </template>
 
 <script lang="ts">

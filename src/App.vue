@@ -1,7 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" style="max-width: 130px" class="mt-5"/>
-  <NavButtons />
-  <div class="container">
+  <div class="bu-container has-text-centered">
+    <img alt="Vue logo" src="./assets/logo.png" style="max-width: 130px" class="mt-5"/>
+    <NavButtons />
     <router-view />
   </div>
 </template>

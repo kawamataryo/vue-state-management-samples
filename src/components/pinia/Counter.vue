@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="title is-1">{{ count }}</p>
+    <p class="bu-title is-1">{{ count }}</p>
   </div>
 </template>
 

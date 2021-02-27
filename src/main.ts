@@ -5,6 +5,10 @@ import "bulma";
 
 const app = createApp(App);
 
+// code-highlight
+import VueCodeHighlight from "vue-code-highlight";
+app.use(VueCodeHighlight);
+
 // vuex
 import { store, key } from "./stores/vuex/store";
 app.use(store, key);

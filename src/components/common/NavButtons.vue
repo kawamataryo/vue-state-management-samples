@@ -1,12 +1,12 @@
 <template>
   <div class="is-flex is-justify-content-center is-flex-grow-1">
-    <div class="buttons is-centered mt-4">
-      <router-link class="button navbar-item" to="/vuex">Vuex 🔋</router-link>
-      <router-link class="button navbar-item" to="/pinia">Pinia 🍍</router-link>
-      <router-link class="button navbar-item" to="/apollo-client"
+    <div class="bu-buttons is-centered mt-4">
+      <router-link class="bu-button bu-navbar-item" to="/vuex">Vuex 🔋</router-link>
+      <router-link class="bu-button bu-navbar-item" to="/pinia">Pinia 🍍</router-link>
+      <router-link class="bu-button bu-navbar-item" to="/apollo-client"
         >Apollo Client 🚀</router-link
       >
-      <router-link class="button navbar-item" to="/original-store"
+      <router-link class="bu-button bu-navbar-item" to="/original-store"
         >Original Store 📁</router-link
       >
     </div>

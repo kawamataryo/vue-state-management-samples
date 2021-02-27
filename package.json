@@ -16,9 +16,12 @@
     "graphql": "^15.5.0",
     "node-sass": "^5.0.0",
     "pinia": "^2.0.0-alpha.7",
+    "postcss-prefixer": "^2.1.2",
+    "raw-loader": "^4.0.2",
     "sass-loader": "10.1.1",
     "utility-types": "^3.10.0",
     "vue": "^3.0.0",
+    "vue-code-highlight": "^0.7.6",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0"
   },

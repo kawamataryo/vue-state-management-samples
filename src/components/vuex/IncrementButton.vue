@@ -1,5 +1,5 @@
 <template>
-  <button class="button is-info" @click="increment">+</button>
+  <button class="bu-button is-info" @click="increment">+</button>
 </template>
 
 <script lang="ts">
