@@ -2,7 +2,7 @@
   <div>
     <h1 class="bu-title is-4 mt-5">
       State management with
-      <a href="https://v4.apollo.vuejs.org" target="_blank">Apollo Client 🚀</a>
+      <a href="https://v4.apollo.vuejs.org" target="_blank">ApolloClient 🚀</a>
     </h1>
     <CardLayout>
       <Counter />
