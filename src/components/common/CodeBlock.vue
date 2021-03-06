@@ -1,9 +1,7 @@
 <template>
   <p>{{ path }}</p>
-  <code-highlight language="ts" class="my-code-block">
-    <pre>
-        {{ code }}
-    </pre>
+  <code-highlight :language="langage" class="my-code-block">
+    <pre>{{ code }}</pre>
   </code-highlight>
 </template>
 
@@ -24,6 +22,11 @@ export default defineComponent({
     code: {
       type: String,
       required: true
+    },
+    langage: {
+      type: String,
+      require: false,
+      default: "ts"
     }
   },
   components: {

@@ -11,55 +11,61 @@
         <DecrementButton />
       </div>
     </CardLayout>
-    <h2 class="is-size-4 mt-5">Store</h2>
-    <CodeBlock path="src/stores/vuex/store.ts" :code="code" />
+    <Tabs
+      class="mt-5"
+      :tabs="tabs"
+      :active-tab-id="activeTabId"
+      @selected="onSelected"
+    />
+    <template v-if="tabs[0].id === activeTabId">
+      <CodeBlock path="src/stores/vuex/store.ts" :code="storeCodeBlock" />
+    </template>
+    <template v-if="tabs[1].id === activeTabId">
+      <CodeBlock
+        path="src/components/vuex/Counter.vue"
+        :code="counterCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/vuex/IncrementButton.vue"
+        :code="incrementButtonCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/vuex/IncrementButton.vue"
+        :code="decrementButtonCodeBlock"
+        langage="markup"
+      />
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import CardLayout from "@/components/common/CardLayout.vue";
 import Counter from "@/components/vuex/Counter.vue";
 import IncrementButton from "@/components/vuex/IncrementButton.vue";
 import DecrementButton from "@/components/vuex/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
+import Tabs from "@/components/common/Tabs.vue";
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import storeCodeBlock from "!!raw-loader!../stores/vuex/store";
+import counterCodeBlock from "!!raw-loader!../components/vuex/Counter.vue";
+import incrementButtonCodeBlock from "!!raw-loader!../components/vuex/IncrementButton.vue";
+import decrementButtonCodeBlock from "!!raw-loader!../components/vuex/DecrementButton.vue";
 
-const STORE_CODE_BLOCK = `
-import { InjectionKey } from "vue";
-import { createStore, Store } from "vuex";
-
-export interface State {
-  count: number;
-}
-
-export const key: InjectionKey<Store<State>> = Symbol();
-
-export const store = createStore<State>({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment(state) {
-      state.count++;
-    },
-    decrement(state) {
-      state.count--;
-    }
-  },
-  actions: {
-    increment({ commit }) {
-      commit("increment");
-    },
-    decrement({ commit }) {
-      commit("decrement");
-    }
-  }
-});
-`;
+const TABS = [
+  { id: 1, name: "Store" },
+  { id: 2, name: "Components" }
+];
 
 export default defineComponent({
   name: "Vuex",
   components: {
+    Tabs,
     DecrementButton,
     IncrementButton,
     CardLayout,
@@ -67,8 +73,18 @@ export default defineComponent({
     CodeBlock
   },
   setup() {
+    const activeTabId = ref(1);
+    const onSelected = (id: number) => {
+      activeTabId.value = id;
+    };
     return {
-      code: STORE_CODE_BLOCK
+      onSelected,
+      activeTabId,
+      tabs: TABS,
+      counterCodeBlock,
+      storeCodeBlock,
+      incrementButtonCodeBlock,
+      decrementButtonCodeBlock
     };
   }
 });
