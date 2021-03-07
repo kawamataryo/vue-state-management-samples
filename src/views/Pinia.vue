@@ -11,8 +11,34 @@
         <DecrementButton />
       </div>
     </CardLayout>
-    <h2 class="is-size-4 mt-5">Store</h2>
-    <CodeBlock path="src/stores/plina/store.ts" :code="code" />
+    <Tabs
+      class="mt-5"
+      :tabs="tabs"
+      :active-tab-id="activeTabId"
+      @selected="onSelected"
+    />
+    <template v-if="tabs[0].id === activeTabId">
+      <CodeBlock path="src/stores/pinia/store.ts" :code="storeCodeBlock" />
+    </template>
+    <template v-if="tabs[1].id === activeTabId">
+      <CodeBlock
+        path="src/components/pinia/Counter.vue"
+        :code="counterCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/pinia/IncrementButton.vue"
+        :code="incrementButtonCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/pinia/IncrementButton.vue"
+        :code="decrementButtonCodeBlock"
+        langage="markup"
+      />
+    </template>
   </div>
 </template>
 
@@ -23,25 +49,15 @@ import Counter from "@/components/pinia/Counter.vue";
 import IncrementButton from "@/components/pinia/IncrementButton.vue";
 import DecrementButton from "@/components/pinia/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
+import Tabs from "@/components/common/Tabs.vue";
 
-const STORE_CODE_BLOCK = `
-import { defineStore } from "pinia";
-
-export const useCounterStore = defineStore({
-  id: "counter",
-  state: () => ({
-    count: 10
-  }),
-  actions: {
-    increment() {
-      this.count++;
-    },
-    decrement() {
-      this.count--;
-    }
-  }
-});
-`;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import storeCodeBlock from "!!raw-loader!../stores/pinia/store.ts";
+import counterCodeBlock from "!!raw-loader!../components/pinia/Counter.vue";
+import incrementButtonCodeBlock from "!!raw-loader!../components/pinia/IncrementButton.vue";
+import decrementButtonCodeBlock from "!!raw-loader!../components/pinia/DecrementButton.vue";
+import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 export default defineComponent({
   name: "Pinia",
@@ -50,11 +66,19 @@ export default defineComponent({
     DecrementButton,
     IncrementButton,
     CardLayout,
-    Counter
+    Counter,
+    Tabs
   },
   setup() {
+    const { tabs, onSelected, activeTabId } = useCodeBlockTabs();
     return {
-      code: STORE_CODE_BLOCK
+      tabs,
+      activeTabId,
+      onSelected,
+      counterCodeBlock,
+      storeCodeBlock,
+      incrementButtonCodeBlock,
+      decrementButtonCodeBlock
     };
   }
 });

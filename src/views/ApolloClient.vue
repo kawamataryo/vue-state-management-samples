@@ -11,24 +11,53 @@
         <DecrementButton />
       </div>
     </CardLayout>
-    <h2 class="is-size-4 mt-5">Store</h2>
-    <CodeBlock
-      path="src/stores/apolloClient/apolloClient.ts"
-      :code="clientCode"
+    <Tabs
+      class="mt-5"
+      :tabs="tabs"
+      :active-tab-id="activeTabId"
+      @selected="onSelected"
     />
-    <CodeBlock
-      path="src/stores/apolloClient/typeDefs.ts"
-      :code="typeDefsCode"
-    />
-    <CodeBlock
-      path="src/stores/apolloClient/resolvers.ts"
-      :code="resolverCode"
-    />
-    <CodeBlock path="src/stores/apolloClient/queries.ts" :code="queriesCode" />
-    <CodeBlock
-      path="src/stores/apolloClient/mutations.ts"
-      :code="mutationsCode"
-    />
+    <template v-if="tabs[0].id === activeTabId">
+      <CodeBlock
+        path="src/stores/apolloClient/apolloClient.ts"
+        :code="apolloClientCodeBlock"
+      />
+      <CodeBlock
+        path="src/stores/apolloClient/typeDefs.ts"
+        :code="typeDefsCodeBlock"
+      />
+      <CodeBlock
+        path="src/stores/apolloClient/resolvers.ts"
+        :code="resolversCodeBlock"
+      />
+      <CodeBlock
+        path="src/stores/apolloClient/queries.ts"
+        :code="queriesCodeBlock"
+      />
+      <CodeBlock
+        path="src/stores/apolloClient/mutations.ts"
+        :code="mutationsCodeBlock"
+      />
+    </template>
+    <template v-if="tabs[1].id === activeTabId">
+      <CodeBlock
+        path="src/components/apolloClient/Counter.vue"
+        :code="counterCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/apolloClient/IncrementButton.vue"
+        :code="incrementButtonCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/apolloClient/IncrementButton.vue"
+        :code="decrementButtonCodeBlock"
+        langage="markup"
+      />
+    </template>
   </div>
 </template>
 
@@ -39,103 +68,25 @@ import Counter from "@/components/apolloClient/Counter.vue";
 import IncrementButton from "@/components/apolloClient/IncrementButton.vue";
 import DecrementButton from "@/components/apolloClient/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
+import Tabs from "@/components/common/Tabs.vue";
 
-const APOLLO_CLIENT_CODE = `
-import ApolloClient from "apollo-boost";
-import { typeDefs } from "@/stores/apolloClient/typeDefs";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { resolvers } from "@/stores/apolloClient/resolvers";
+/* eslint-disable */
+// @ts-ignore
+import apolloClientCodeBlock from "!!raw-loader!../stores/apolloClient/apolloClient.ts";
+// @ts-ignore
+import mutationsCodeBlock from "!!raw-loader!../stores/apolloClient/mutations.ts";
+// @ts-ignore
+import queriesCodeBlock from "!!raw-loader!../stores/apolloClient/queries.ts";
+// @ts-ignore
+import resolversCodeBlock from "!!raw-loader!../stores/apolloClient/resolvers.ts";
+// @ts-ignore
+import typeDefsCodeBlock from "!!raw-loader!../stores/apolloClient/typeDefs.ts";
+/* eslint-enable */
 
-const cache = new InMemoryCache();
-
-export const apolloClient = new ApolloClient({
-  cache,
-  typeDefs,
-  resolvers
-});
-
-// storeの初期化
-cache.writeData({
-  data: {
-    store: {
-      __typename: "Store",
-      count: 0
-    }
-  }
-});
-`;
-
-const APOLLO_RESOLVERS_CODE = `
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { COUNT_QUERY } from "@/stores/apolloClient/queries";
-
-export const resolvers = {
-  Mutation: {
-    increment: (
-      _: unknown,
-      _arg: unknown,
-      { cache }: { cache: InMemoryCache }
-    ) => {
-      const data = cache.readQuery<any>({ query: COUNT_QUERY });
-      data.store.count++;
-      cache.writeQuery({ query: COUNT_QUERY, data });
-      return data.store.count;
-    },
-    decrement: (
-      _: unknown,
-      _arg: unknown,
-      { cache }: { cache: InMemoryCache }
-    ) => {
-      const data = cache.readQuery<any>({ query: COUNT_QUERY });
-      data.store.count--;
-      cache.writeQuery({ query: COUNT_QUERY, data });
-      return data.store.count;
-    }
-  }
-};
-`;
-
-const APOLLO_TYPE_DEFS_CODE = `
-import gql from "graphql-tag";
-
-export const typeDefs = gql\`
-  extend type Store {
-    count: Int!
-  }
-  extend type Mutation {
-    increment: Int
-    decrement: Int
-  }
-\`;
-`;
-
-const APOLLO_QUERIES_CODE = `
-import gql from "graphql-tag";
-
-export const COUNT_QUERY = gql\`
-  query CountQuery {
-    store @client {
-      count
-    }
-  }
-\`;
-`;
-
-const APOLLO_MUTATIONS_CODE = `
-import gql from "graphql-tag";
-
-export const INCREMENT_MUTATION = gql\`
-  mutation incrementMutation {
-    increment @client
-  }
-\`;
-
-export const DECREMENT_MUTATION = gql\`
-  mutation decrementMutation {
-    decrement @client
-  }
-\`;
-`;
+import counterCodeBlock from "!!raw-loader!../components/apolloClient/Counter.vue";
+import incrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/IncrementButton.vue";
+import decrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/DecrementButton.vue";
+import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 export default defineComponent({
   name: "Pinia",
@@ -144,15 +95,23 @@ export default defineComponent({
     DecrementButton,
     IncrementButton,
     CardLayout,
-    Counter
+    Counter,
+    Tabs
   },
   setup() {
+    const { tabs, onSelected, activeTabId } = useCodeBlockTabs();
     return {
-      clientCode: APOLLO_CLIENT_CODE,
-      resolverCode: APOLLO_RESOLVERS_CODE,
-      typeDefsCode: APOLLO_TYPE_DEFS_CODE,
-      mutationsCode: APOLLO_MUTATIONS_CODE,
-      queriesCode: APOLLO_QUERIES_CODE
+      tabs,
+      activeTabId,
+      onSelected,
+      counterCodeBlock,
+      apolloClientCodeBlock,
+      mutationsCodeBlock,
+      queriesCodeBlock,
+      typeDefsCodeBlock,
+      resolversCodeBlock,
+      incrementButtonCodeBlock,
+      decrementButtonCodeBlock
     };
   }
 });

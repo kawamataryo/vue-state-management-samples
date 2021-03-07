@@ -51,6 +51,7 @@ import Counter from "@/components/originalStore/Counter.vue";
 import IncrementButton from "@/components/originalStore/IncrementButton.vue";
 import DecrementButton from "@/components/originalStore/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
+import Tabs from "@/components/common/Tabs.vue";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -67,7 +68,8 @@ export default defineComponent({
     DecrementButton,
     IncrementButton,
     CardLayout,
-    Counter
+    Counter,
+    Tabs
   },
   setup() {
     const { tabs, onSelected, activeTabId } = useCodeBlockTabs();

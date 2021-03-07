@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import CardLayout from "@/components/common/CardLayout.vue";
 import Counter from "@/components/vuex/Counter.vue";
 import IncrementButton from "@/components/vuex/IncrementButton.vue";
