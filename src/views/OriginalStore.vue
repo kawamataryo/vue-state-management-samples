@@ -10,8 +10,37 @@
         <DecrementButton />
       </div>
     </CardLayout>
-    <h2 class="is-size-4 mt-5">Store</h2>
-    <CodeBlock path="src/stores/originalStore/store.ts" :code="code" />
+    <Tabs
+      class="mt-5"
+      :tabs="tabs"
+      :active-tab-id="activeTabId"
+      @selected="onSelected"
+    />
+    <template v-if="tabs[0].id === activeTabId">
+      <CodeBlock
+        path="src/stores/originalStore/store.ts"
+        :code="storeCodeBlock"
+      />
+    </template>
+    <template v-if="tabs[1].id === activeTabId">
+      <CodeBlock
+        path="src/components/originalStore/Counter.vue"
+        :code="counterCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/originalStore/IncrementButton.vue"
+        :code="incrementButtonCodeBlock"
+        langage="markup"
+      />
+      <CodeBlock
+        class="mt-3"
+        path="src/components/originalStore/IncrementButton.vue"
+        :code="decrementButtonCodeBlock"
+        langage="markup"
+      />
+    </template>
   </div>
 </template>
 
@@ -23,45 +52,16 @@ import IncrementButton from "@/components/originalStore/IncrementButton.vue";
 import DecrementButton from "@/components/originalStore/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
 
-const STORE_CODE_BLOCK = `
-import { reactive, inject, provide, InjectionKey } from "vue";
-import { DeepReadonly } from "utility-types";
-
-const createStore = () => {
-  const state = reactive({
-    count: 0
-  });
-
-  const mutations = {
-    increment: () => {
-      state.count++;
-    },
-    decrement: () => {
-      state.count--;
-    }
-  };
-
-  return {
-    state,
-    mutations
-  };
-};
-
-type Store = ReturnType<DeepReadonly<typeof createStore>>;
-
-const STORE_KEY: InjectionKey<Store> = Symbol("Store");
-
-export const initializeStore = () => {
-  provide(STORE_KEY, createStore());
-};
-
-export const useStore = () => {
-  return inject(STORE_KEY) as Store;
-};
-`;
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import storeCodeBlock from "!!raw-loader!../stores/originalStore/store.ts";
+import counterCodeBlock from "!!raw-loader!../components/originalStore/Counter.vue";
+import incrementButtonCodeBlock from "!!raw-loader!../components/originalStore/IncrementButton.vue";
+import decrementButtonCodeBlock from "!!raw-loader!../components/originalStore/DecrementButton.vue";
+import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 export default defineComponent({
-  name: "Pinia",
+  name: "OriginalStore",
   components: {
     CodeBlock,
     DecrementButton,
@@ -70,8 +70,15 @@ export default defineComponent({
     Counter
   },
   setup() {
+    const { tabs, onSelected, activeTabId } = useCodeBlockTabs();
     return {
-      code: STORE_CODE_BLOCK
+      tabs,
+      activeTabId,
+      onSelected,
+      counterCodeBlock,
+      storeCodeBlock,
+      incrementButtonCodeBlock,
+      decrementButtonCodeBlock
     };
   }
 });

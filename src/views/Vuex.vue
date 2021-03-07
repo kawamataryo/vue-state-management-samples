@@ -52,15 +52,11 @@ import CodeBlock from "@/components/common/CodeBlock.vue";
 import Tabs from "@/components/common/Tabs.vue";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import storeCodeBlock from "!!raw-loader!../stores/vuex/store";
+import storeCodeBlock from "!!raw-loader!../stores/vuex/store.ts";
 import counterCodeBlock from "!!raw-loader!../components/vuex/Counter.vue";
 import incrementButtonCodeBlock from "!!raw-loader!../components/vuex/IncrementButton.vue";
 import decrementButtonCodeBlock from "!!raw-loader!../components/vuex/DecrementButton.vue";
-
-const TABS = [
-  { id: 1, name: "Store" },
-  { id: 2, name: "Components" }
-];
+import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 export default defineComponent({
   name: "Vuex",
@@ -73,14 +69,11 @@ export default defineComponent({
     CodeBlock
   },
   setup() {
-    const activeTabId = ref(1);
-    const onSelected = (id: number) => {
-      activeTabId.value = id;
-    };
+    const { tabs, onSelected, activeTabId } = useCodeBlockTabs();
     return {
       onSelected,
       activeTabId,
-      tabs: TABS,
+      tabs,
       counterCodeBlock,
       storeCodeBlock,
       incrementButtonCodeBlock,
