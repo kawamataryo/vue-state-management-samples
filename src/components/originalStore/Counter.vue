@@ -12,7 +12,7 @@ export default defineComponent({
   name: "Counter",
   setup() {
     const { state } = useStore();
-    const count = computed(() => state.count);
+    const count = computed(() => state.count.value);
 
     return {
       count

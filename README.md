@@ -181,7 +181,7 @@ export const resolvers = {
 ### Store
 [src/stores/originalStore/store.ts](https://github.com/kawamataryo/vue-state-management-samples/blob/main/src/stores/originalStore/store.ts)
 ```ts
-import { reactive, inject, provide, InjectionKey } from "vue";
+import { reactive, inject, provide, InjectionKey, toRefs } from "vue";
 import { DeepReadonly } from "utility-types";
 
 const createStore = () => {
@@ -199,7 +199,7 @@ const createStore = () => {
   };
 
   return {
-    state,
+    state: toRefs(state),
     mutations
   };
 };
@@ -215,4 +215,5 @@ export const initializeStore = () => {
 export const useStore = () => {
   return inject(STORE_KEY) as Store;
 };
+
 ```

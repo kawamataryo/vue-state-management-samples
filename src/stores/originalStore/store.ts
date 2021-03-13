@@ -1,4 +1,4 @@
-import { reactive, inject, provide, InjectionKey } from "vue";
+import { reactive, inject, provide, InjectionKey, toRefs } from "vue";
 import { DeepReadonly } from "utility-types";
 
 const createStore = () => {
@@ -16,7 +16,7 @@ const createStore = () => {
   };
 
   return {
-    state,
+    state: toRefs(state),
     mutations
   };
 };
