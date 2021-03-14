@@ -2,7 +2,8 @@ import { ref } from "vue";
 
 const TABS = [
   { id: 1, name: "Store" },
-  { id: 2, name: "Components" }
+  { id: 2, name: "Install" },
+  { id: 3, name: "Components" }
 ];
 
 export const useCodeBlockTabs = () => {

@@ -22,6 +22,12 @@
     </template>
     <template v-if="tabs[1].id === activeTabId">
       <CodeBlock
+          path="src/main.ts"
+          :code="installCodeBlock"
+      />
+    </template>
+    <template v-if="tabs[2].id === activeTabId">
+      <CodeBlock
         path="src/components/pinia/Counter.vue"
         :code="counterCodeBlock"
         langage="markup"
@@ -59,6 +65,19 @@ import incrementButtonCodeBlock from "!!raw-loader!../components/pinia/Increment
 import decrementButtonCodeBlock from "!!raw-loader!../components/pinia/DecrementButton.vue";
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
+const installCodeBlock = `
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createPinia } from "pinia";
+
+const app = createApp(App);
+
+// pinia
+app.use(createPinia());
+
+app.mount("#app");
+`
+
 export default defineComponent({
   name: "Pinia",
   components: {
@@ -78,7 +97,8 @@ export default defineComponent({
       counterCodeBlock,
       storeCodeBlock,
       incrementButtonCodeBlock,
-      decrementButtonCodeBlock
+      decrementButtonCodeBlock,
+      installCodeBlock
     };
   }
 });

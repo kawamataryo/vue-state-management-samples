@@ -41,6 +41,12 @@
     </template>
     <template v-if="tabs[1].id === activeTabId">
       <CodeBlock
+          path="src/main.ts"
+          :code="installCodeBlock"
+      />
+    </template>
+    <template v-if="tabs[2].id === activeTabId">
+      <CodeBlock
         path="src/components/apolloClient/Counter.vue"
         :code="counterCodeBlock"
         langage="markup"
@@ -88,6 +94,24 @@ import incrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/In
 import decrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/DecrementButton.vue";
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
+const installCodeBlock = `
+import { createApp, h, provide } from "vue";
+import App from "./App.vue";
+import { DefaultApolloClient } from "@vue/apollo-composable";
+import { apolloClient } from "@/stores/apolloClient/apolloClient";
+
+const app = createApp({
+  setup() {
+    // ApolloClient
+    provide(DefaultApolloClient, apolloClient);
+
+    return () => h(App);
+  }
+});
+
+app.mount("#app");
+`
+
 export default defineComponent({
   name: "Pinia",
   components: {
@@ -111,7 +135,8 @@ export default defineComponent({
       typeDefsCodeBlock,
       resolversCodeBlock,
       incrementButtonCodeBlock,
-      decrementButtonCodeBlock
+      decrementButtonCodeBlock,
+      installCodeBlock
     };
   }
 });

@@ -24,6 +24,12 @@
     </template>
     <template v-if="tabs[1].id === activeTabId">
       <CodeBlock
+          path="src/main.ts"
+          :code="installCodeBlock"
+      />
+    </template>
+    <template v-if="tabs[2].id === activeTabId">
+      <CodeBlock
         path="src/components/originalStore/Counter.vue"
         :code="counterCodeBlock"
         langage="markup"
@@ -61,6 +67,23 @@ import incrementButtonCodeBlock from "!!raw-loader!../components/originalStore/I
 import decrementButtonCodeBlock from "!!raw-loader!../components/originalStore/DecrementButton.vue";
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
+const installCodeBlock = `
+import { createApp, h, provide } from "vue";
+import App from "./App.vue";
+import { initializeStore } from "@/stores/originalStore/store";
+
+const app = createApp({
+  setup() {
+    // Original store
+    initializeStore();
+
+    return () => h(App);
+  }
+});
+
+app.mount("#app");
+`
+
 export default defineComponent({
   name: "OriginalStore",
   components: {
@@ -80,7 +103,8 @@ export default defineComponent({
       counterCodeBlock,
       storeCodeBlock,
       incrementButtonCodeBlock,
-      decrementButtonCodeBlock
+      decrementButtonCodeBlock,
+      installCodeBlock
     };
   }
 });

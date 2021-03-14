@@ -21,6 +21,9 @@
       <CodeBlock path="src/stores/vuex/store.ts" :code="storeCodeBlock" />
     </template>
     <template v-if="tabs[1].id === activeTabId">
+      <CodeBlock path="src/main.ts" :code="installCodeBlock" />
+    </template>
+    <template v-if="tabs[2].id === activeTabId">
       <CodeBlock
         path="src/components/vuex/Counter.vue"
         :code="counterCodeBlock"
@@ -58,6 +61,19 @@ import incrementButtonCodeBlock from "!!raw-loader!../components/vuex/IncrementB
 import decrementButtonCodeBlock from "!!raw-loader!../components/vuex/DecrementButton.vue";
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
+const installCodeBlock = `
+import { createApp } from "vue";
+import App from "./App.vue";
+import { store, key } from "./stores/vuex/store";
+
+const app = createApp(App);
+
+// vuex
+app.use(store, key);
+
+app.mount("#app");
+`
+
 export default defineComponent({
   name: "Vuex",
   components: {
@@ -77,7 +93,8 @@ export default defineComponent({
       counterCodeBlock,
       storeCodeBlock,
       incrementButtonCodeBlock,
-      decrementButtonCodeBlock
+      decrementButtonCodeBlock,
+      installCodeBlock
     };
   }
 });
