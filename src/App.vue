@@ -12,11 +12,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from "vue";
+import { defineComponent } from "vue";
 import NavButtons from "@/components/common/NavButtons.vue";
-import { DefaultApolloClient } from "@vue/apollo-composable";
-import { apolloClient } from "@/stores/apolloClient/apolloClient";
-import { initializeStore } from "@/stores/originalStore/store";
 
 export default defineComponent({
   name: "App",
@@ -24,11 +21,7 @@ export default defineComponent({
     NavButtons
   },
   setup() {
-    // ApolloClient
-    provide(DefaultApolloClient, apolloClient);
-
-    // Original store
-    initializeStore();
+    return {};
   }
 });
 </script>
