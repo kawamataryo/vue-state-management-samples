@@ -23,10 +23,7 @@
       />
     </template>
     <template v-if="tabs[1].id === activeTabId">
-      <CodeBlock
-          path="src/main.ts"
-          :code="installCodeBlock"
-      />
+      <CodeBlock path="src/main.ts" :code="installCodeBlock" />
     </template>
     <template v-if="tabs[2].id === activeTabId">
       <CodeBlock
@@ -82,7 +79,7 @@ const app = createApp({
 });
 
 app.mount("#app");
-`
+`;
 
 export default defineComponent({
   name: "OriginalStore",

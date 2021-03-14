@@ -1,5 +1,5 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { COUNT_QUERY } from "@/stores/apolloClient/queries";
+import { COUNT_QUERY } from "@/stores/vueApollo/queries";
 
 export const resolvers = {
   Mutation: {

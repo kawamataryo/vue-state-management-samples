@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useQuery, useResult } from "@vue/apollo-composable";
-import { COUNT_QUERY } from "@/stores/apolloClient/queries";
+import { COUNT_QUERY } from "@/stores/vueApollo/queries";
 
 export default defineComponent({
   name: "Counter",

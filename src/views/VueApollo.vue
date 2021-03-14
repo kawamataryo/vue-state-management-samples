@@ -40,10 +40,7 @@
       />
     </template>
     <template v-if="tabs[1].id === activeTabId">
-      <CodeBlock
-          path="src/main.ts"
-          :code="installCodeBlock"
-      />
+      <CodeBlock path="src/main.ts" :code="installCodeBlock" />
     </template>
     <template v-if="tabs[2].id === activeTabId">
       <CodeBlock
@@ -70,28 +67,28 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import CardLayout from "@/components/common/CardLayout.vue";
-import Counter from "@/components/apolloClient/Counter.vue";
-import IncrementButton from "@/components/apolloClient/IncrementButton.vue";
-import DecrementButton from "@/components/apolloClient/DecrementButton.vue";
+import Counter from "@/components/vueApollo/Counter.vue";
+import IncrementButton from "@/components/vueApollo/IncrementButton.vue";
+import DecrementButton from "@/components/vueApollo/DecrementButton.vue";
 import CodeBlock from "@/components/common/CodeBlock.vue";
 import Tabs from "@/components/common/Tabs.vue";
 
 /* eslint-disable */
 // @ts-ignore
-import apolloClientCodeBlock from "!!raw-loader!../stores/apolloClient/apolloClient.ts";
+import apolloClientCodeBlock from "!!raw-loader!../stores/vueApollo/apolloClient.ts";
 // @ts-ignore
-import mutationsCodeBlock from "!!raw-loader!../stores/apolloClient/mutations.ts";
+import mutationsCodeBlock from "!!raw-loader!../stores/vueApollo/mutations.ts";
 // @ts-ignore
-import queriesCodeBlock from "!!raw-loader!../stores/apolloClient/queries.ts";
+import queriesCodeBlock from "!!raw-loader!../stores/vueApollo/queries.ts";
 // @ts-ignore
-import resolversCodeBlock from "!!raw-loader!../stores/apolloClient/resolvers.ts";
+import resolversCodeBlock from "!!raw-loader!../stores/vueApollo/resolvers.ts";
 // @ts-ignore
-import typeDefsCodeBlock from "!!raw-loader!../stores/apolloClient/typeDefs.ts";
+import typeDefsCodeBlock from "!!raw-loader!../stores/vueApollo/typeDefs.ts";
 /* eslint-enable */
 
-import counterCodeBlock from "!!raw-loader!../components/apolloClient/Counter.vue";
-import incrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/IncrementButton.vue";
-import decrementButtonCodeBlock from "!!raw-loader!../components/apolloClient/DecrementButton.vue";
+import counterCodeBlock from "!!raw-loader!../components/vueApollo/Counter.vue";
+import incrementButtonCodeBlock from "!!raw-loader!../components/vueApollo/IncrementButton.vue";
+import decrementButtonCodeBlock from "!!raw-loader!../components/vueApollo/DecrementButton.vue";
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 const installCodeBlock = `
@@ -110,7 +107,7 @@ const app = createApp({
 });
 
 app.mount("#app");
-`
+`;
 
 export default defineComponent({
   name: "Pinia",

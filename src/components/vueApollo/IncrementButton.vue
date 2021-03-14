@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useMutation } from "@vue/apollo-composable";
-import { INCREMENT_MUTATION } from "@/stores/apolloClient/mutations";
+import { INCREMENT_MUTATION } from "@/stores/vueApollo/mutations";
 
 export default defineComponent({
   name: "IncrementButton",

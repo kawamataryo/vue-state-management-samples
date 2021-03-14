@@ -26,12 +26,10 @@ const routes: Array<RouteRecordRaw> = [
       )
   },
   {
-    path: "/apollo-client",
-    name: "ApolloClient",
+    path: "/vue-apollo",
+    name: "VueApollo",
     component: () =>
-      import(
-        /* webpackChunkName: "apollo-client" */ "../views/ApolloClient.vue"
-      )
+      import(/* webpackChunkName: "apollo-client" */ "../views/VueApollo.vue")
   }
 ];
 

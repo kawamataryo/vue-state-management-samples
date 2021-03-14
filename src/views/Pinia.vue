@@ -21,10 +21,7 @@
       <CodeBlock path="src/stores/pinia/store.ts" :code="storeCodeBlock" />
     </template>
     <template v-if="tabs[1].id === activeTabId">
-      <CodeBlock
-          path="src/main.ts"
-          :code="installCodeBlock"
-      />
+      <CodeBlock path="src/main.ts" :code="installCodeBlock" />
     </template>
     <template v-if="tabs[2].id === activeTabId">
       <CodeBlock
@@ -76,7 +73,7 @@ const app = createApp(App);
 app.use(createPinia());
 
 app.mount("#app");
-`
+`;
 
 export default defineComponent({
   name: "Pinia",

@@ -1,7 +1,7 @@
 import ApolloClient from "apollo-boost";
-import { typeDefs } from "@/stores/apolloClient/typeDefs";
+import { typeDefs } from "@/stores/vueApollo/typeDefs";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { resolvers } from "@/stores/apolloClient/resolvers";
+import { resolvers } from "@/stores/vueApollo/resolvers";
 
 const cache = new InMemoryCache();
 

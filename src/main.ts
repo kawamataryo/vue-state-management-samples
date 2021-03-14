@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import "bulma";
 import { DefaultApolloClient } from "@vue/apollo-composable";
-import { apolloClient } from "@/stores/apolloClient/apolloClient";
+import { apolloClient } from "@/stores/vueApollo/apolloClient";
 import { initializeStore } from "@/stores/originalStore/store";
 import VueCodeHighlight from "vue-code-highlight";
 import { store, key } from "./stores/vuex/store";

@@ -72,7 +72,7 @@ const app = createApp(App);
 app.use(store, key);
 
 app.mount("#app");
-`
+`;
 
 export default defineComponent({
   name: "Vuex",
