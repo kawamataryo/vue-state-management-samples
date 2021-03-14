@@ -7,11 +7,11 @@
       <router-link class="bu-button bu-navbar-item" to="/pinia"
         >Pinia 🍍</router-link
       >
-      <router-link class="bu-button bu-navbar-item" to="/apollo-client"
-        >Apollo Client 🚀</router-link
-      >
       <router-link class="bu-button bu-navbar-item" to="/original-store"
         >Original Store 📁</router-link
+      >
+      <router-link class="bu-button bu-navbar-item" to="/apollo-client"
+      >Vue Apollo 🚀</router-link
       >
     </div>
   </div>
