@@ -92,19 +92,15 @@ import decrementButtonCodeBlock from "!!raw-loader!../components/vueApollo/Decre
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 const installCodeBlock = `
-import { createApp, h, provide } from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import { apolloClient } from "@/stores/apolloClient/apolloClient";
 
-const app = createApp({
-  setup() {
-    // ApolloClient
-    provide(DefaultApolloClient, apolloClient);
+const app = createApp(App);
 
-    return () => h(App);
-  }
-});
+// vue-apollo
+app.provide(DefaultApolloClient, apolloClient);
 
 app.mount("#app");
 `;

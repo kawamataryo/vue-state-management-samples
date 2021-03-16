@@ -9,8 +9,8 @@ import { useStore } from "@/stores/originalStore/store";
 export default defineComponent({
   name: "IncrementButton",
   setup() {
-    const { mutations } = useStore();
-    const increment = () => mutations.increment();
+    const { actions } = useStore();
+    const increment = () => actions.increment();
 
     return {
       increment

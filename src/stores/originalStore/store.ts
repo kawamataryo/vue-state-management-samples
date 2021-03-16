@@ -1,12 +1,12 @@
-import { reactive, inject, provide, InjectionKey, toRefs } from "vue";
+import { reactive, inject, InjectionKey, toRefs } from "vue";
 import { DeepReadonly } from "utility-types";
 
-const createStore = () => {
+export const createStore = () => {
   const state = reactive({
     count: 0
   });
 
-  const mutations = {
+  const actions = {
     increment: () => {
       state.count++;
     },
@@ -17,17 +17,13 @@ const createStore = () => {
 
   return {
     state: toRefs(state),
-    mutations
+    actions
   };
 };
 
 type Store = ReturnType<DeepReadonly<typeof createStore>>;
 
-const STORE_KEY: InjectionKey<Store> = Symbol("Store");
-
-export const initializeStore = () => {
-  provide(STORE_KEY, createStore());
-};
+export const STORE_KEY: InjectionKey<Store> = Symbol("Store");
 
 export const useStore = () => {
   return inject(STORE_KEY) as Store;

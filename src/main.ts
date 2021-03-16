@@ -1,28 +1,24 @@
-import { createApp, h, provide } from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "bulma";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import { apolloClient } from "@/stores/vueApollo/apolloClient";
-import { initializeStore } from "@/stores/originalStore/store";
+import { STORE_KEY, createStore } from "@/stores/originalStore/store";
 import VueCodeHighlight from "vue-code-highlight";
 import { store, key } from "./stores/vuex/store";
 import { createPinia } from "pinia";
 
-const app = createApp({
-  setup() {
-    // ApolloClient
-    provide(DefaultApolloClient, apolloClient);
-
-    // Original store
-    initializeStore();
-
-    return () => h(App);
-  }
-});
+const app = createApp(App);
 
 // code-highlight
 app.use(VueCodeHighlight);
+
+// vue-apollo
+app.provide(DefaultApolloClient, apolloClient);
+
+// Original Store
+app.provide(STORE_KEY, createStore());
 
 // vuex
 app.use(store, key);

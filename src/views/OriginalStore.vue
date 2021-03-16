@@ -65,18 +65,13 @@ import decrementButtonCodeBlock from "!!raw-loader!../components/originalStore/D
 import { useCodeBlockTabs } from "@/composables/useCodeBlockTabs";
 
 const installCodeBlock = `
-import { createApp, h, provide } from "vue";
+import { createApp, provide } from "vue";
 import App from "./App.vue";
-import { initializeStore } from "@/stores/originalStore/store";
+import { STORE_KEY, createStore } from "@/stores/originalStore/store";
+const app = createApp(App);
 
-const app = createApp({
-  setup() {
-    // Original store
-    initializeStore();
-
-    return () => h(App);
-  }
-});
+// Original Store
+app.provide(STORE_KEY, createStore());
 
 app.mount("#app");
 `;
