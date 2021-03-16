@@ -21,7 +21,7 @@ export const createStore = () => {
   };
 };
 
-type Store = ReturnType<DeepReadonly<typeof createStore>>;
+type Store = DeepReadonly<ReturnType<typeof createStore>>;
 
 export const STORE_KEY: InjectionKey<Store> = Symbol("Store");
 
